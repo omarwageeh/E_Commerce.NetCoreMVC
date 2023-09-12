@@ -1,0 +1,58 @@
+﻿@page
+@model E_Commerce.NetCoreMVC.Pages.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h1>Products</h1>
+
+    <a asp-page="Create" class="btn btn-primary">Create New</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Product[0].NameEn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product[0].NameAr)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product[0].UnitPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product[0].StockQuantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product[0].Category.Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody class="table-striped">
+@foreach (var item in Model.Product) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NameEn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NameAr)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnitPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StockQuantity)
+            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.Name)
+                </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id" class="btn btn-primary">Edit</a> 
+                <a asp-page="./Details" asp-route-id="@item.Id" class="btn btn-warning">Details</a> 
+                <a asp-page="./Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
